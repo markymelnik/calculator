@@ -4,19 +4,17 @@ const numBtn = document.querySelectorAll(".numBtn");
 const operBtn = document.querySelectorAll(".operBtn");
 const clearBtn = document.querySelector("clearBtn");
 const equalBtn = document.querySelector("equalBtn");
+const displayField = document.querySelector("#displayField");
 
-const displayText = document.querySelector("displayText");
-
+let initialValue = 0;
+let finalValue = 0;
 
 numBtn.forEach(button => {
     button.addEventListener('click', () => {
-        getNum(button.textContent);
+        displayField.value += +button.textContent;
     }
 )});
 
-function getNum(num) {
-    console.log(num)
-}
 
 
 function add(a, b) {
