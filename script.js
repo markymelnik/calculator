@@ -1,9 +1,26 @@
 // Calculator Project
 
-const numBtn = document.querySelectorAll(".numBtn");
+const operatorBtn = document.querySelectorAll(".operatorBtn");
+const displayText = document.querySelector(".displayText");
+const equalBtn = document.querySelector("#equalBtn");
 
-let firstNum = 0;
+let firstNum = 12;
+let secondNum = 4;
+let sign = '/';
 
-numBtn.forEach(button => button.addEventListener("click", () => {
-    firstNum = button.textContent;
-}));
+equalBtn.addEventListener("click", () => {
+    displayText.textContent = `${operate()}`
+});
+
+function operate() { 
+    switch(sign) {
+        case '+':
+            return firstNum + secondNum;
+        case '-':
+            return firstNum - secondNum;
+        case '*':
+            return firstNum * secondNum;
+        case '/':
+            return firstNum / secondNum;
+    }
+}
