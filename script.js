@@ -1,26 +1,49 @@
 // Calculator Project
 
-const operatorBtn = document.querySelectorAll(".operatorBtn");
-const displayText = document.querySelector(".displayText");
-const equalBtn = document.querySelector("#equalBtn");
+const numBtn = document.querySelectorAll(".numBtn");
+const operBtn = document.querySelectorAll(".operBtn");
+const clearBtn = document.querySelector("clearBtn");
+const equalBtn = document.querySelector("equalBtn");
 
-let firstNum = 12;
-let secondNum = 4;
-let sign = '/';
+const displayText = document.querySelector("displayText");
 
-equalBtn.addEventListener("click", () => {
-    displayText.textContent = `${operate()}`
-});
 
-function operate() { 
-    switch(sign) {
-        case '+':
-            return firstNum + secondNum;
-        case '-':
-            return firstNum - secondNum;
-        case '*':
-            return firstNum * secondNum;
-        case '/':
-            return firstNum / secondNum;
+numBtn.forEach(button => {
+    button.addEventListener('click', () => {
+        getNum(button.textContent);
+    }
+)});
+
+function getNum(num) {
+    console.log(num)
+}
+
+
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
+
+function operate(operator, a, b) {
+    switch(operator) {
+        case "+":
+            return add(a, b);
+        case "-":
+            return subtract(a,b);
+        case "*":
+            return multiply(a,b);
+        case "/":
+            return divide(a,b);
     }
 }
