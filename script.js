@@ -11,7 +11,7 @@ let previousOperand = 0;
 let currentOperand = 0;
 let currentOperator = '';
 let needSecondOperand = false;
-let finalSum = 0;
+let totalSum = 0;
 
 numBtn.forEach(button => {
     button.addEventListener('click', () => {
@@ -23,19 +23,31 @@ numBtn.forEach(button => {
             displayValue.value += button.textContent;
             currentOperand += button.textContent;
             currentOperand = parseInt(currentOperand);
+            console.log(previousOperand);
+            console.log(currentOperand);  
 }})});
 
 signBtn.forEach(sign => {
     sign.addEventListener('click', () => {
-        needSecondOperand = true;
-        displayValue.value += sign.textContent;
-        currentOperator = sign.textContent;
-        previousOperand = currentOperand;
-        currentOperand = 0;
+        if (totalSum == 0) {
+            needSecondOperand = true;
+            displayValue.value += sign.textContent;
+            currentOperator = sign.textContent;
+            previousOperand = currentOperand;
+            currentOperand = 0;
+        } else {
+            displayValue.value += sign.textContent;
+            currentOperator = sign.textContent;
+            previousOperand = totalSum;
+            currentOperand = 0;
+        }
 })});
 
 equalBtn.addEventListener('click', () => {
     displayValue.value = operate();
+    totalSum = displayValue.value;
+    totalSum = +totalSum;
+    console.log(totalSum)
 });
 
 function operate(a, b, operator) {
@@ -52,27 +64,28 @@ function operate(a, b, operator) {
         case "/": 
             return divide(a,b);
     }
-}
+};
 
 function add(a, b) {
     return a + b;
-}
+};
 
 function subtract(a, b) {
     return a - b;
-}
+};
 
 function multiply(a, b) {
     return a * b;
-}
+};
 
 function divide(a, b) {
     return a / b;
-}
+};
 
 clearBtn.addEventListener('click', () => {
     displayValue.value = '';
     previousOperand = 0;
     currentOperand = 0;
     currentOperator = 0;
+    finalSum = 0;
 });
