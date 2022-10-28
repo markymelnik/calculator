@@ -1,44 +1,56 @@
 // Calculator Project
 
+const calcBtn = document.querySelectorAll(".calcBtn");
 const numBtn = document.querySelectorAll(".numBtn");
 const signBtn = document.querySelectorAll(".signBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const equalBtn = document.querySelector("#equalBtn");
-const displayField = document.querySelector("#displayField");
+const displayValue = document.querySelector("#displayField");
 
-let firstOperand = 0;
-let secondOperand = 0;
-let tempOperand = 0;
-let currentOperator = null;
+let previousOperand = 0;
+let currentOperand = 0;
+let currentOperator = '';
+let needSecondOperand = false;
+let finalSum = 0;
 
 numBtn.forEach(button => {
     button.addEventListener('click', () => {
-        displayField.value += button.textContent;
-        firstOperand += button.textContent;
-        firstOperand = +firstOperand;      
-})});
+        if (needSecondOperand == false) {
+            displayValue.value += button.textContent;
+            currentOperand += button.textContent;
+            currentOperand = parseInt(currentOperand);
+        } else {
+            displayValue.value += button.textContent;
+            currentOperand += button.textContent;
+            currentOperand = parseInt(currentOperand);
+            console.log(currentOperand);
+}})});
 
 signBtn.forEach(sign => {
     sign.addEventListener('click', () => {
-        displayField.value += sign.textContent;    
-        currentOperator = sign.textContent;
+        needSecondOperand = true;
+        displayValue.value += sign.textContent;
+        previousOperand = currentOperand;
+        currentOperand = 0;
+        console.log(previousOperand)    
 })});
 
 clearBtn.addEventListener('click', () => {
-    displayField.value = '';
-    firstOperand = 0;
-    secondOperand = 0;
+    displayValue.value = '';
+    previousOperand = 0;
+    currentOperand = 0;
+    currentOperator = 0;
 });
 
-function operate() {
-    switch(sign) {
-        case "+":
+function operate(a, b, operator) {
+    switch(operator) {
+        case "+": 
             return add(a, b);
-        case "-":
+        case "-": 
             return subtract(a,b);
-        case "*":
+        case "*": 
             return multiply(a,b);
-        case "/":
+        case "/": 
             return divide(a,b);
     }
 }
