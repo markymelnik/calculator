@@ -1,17 +1,19 @@
 // Calculator Project
 
-const calcBtn = document.querySelectorAll(".calcBtn");
 const numBtn = document.querySelectorAll(".numBtn");
 const signBtn = document.querySelectorAll(".signBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const equalBtn = document.querySelector("#equalBtn");
 const displayValue = document.querySelector("#displayField");
+const numAndSignBtns = document.querySelectorAll(".numBtn", ".signBtn");
 
 let previousOperand = 0;
 let currentOperand = 0;
 let currentOperator = '';
 let needSecondOperand = false;
-let totalSum = 0;
+let totalSum = null;
+
+let displayArray = [];
 
 numBtn.forEach(button => {
     button.addEventListener('click', () => {
@@ -22,14 +24,13 @@ numBtn.forEach(button => {
         } else {
             displayValue.value += button.textContent;
             currentOperand += button.textContent;
-            currentOperand = parseInt(currentOperand);
-            console.log(previousOperand);
-            console.log(currentOperand);  
-}})});
+            currentOperand = parseInt(currentOperand); 
+        }
+})});
 
 signBtn.forEach(sign => {
     sign.addEventListener('click', () => {
-        if (totalSum == 0) {
+        if (totalSum == null) {
             needSecondOperand = true;
             displayValue.value += sign.textContent;
             currentOperator = sign.textContent;
@@ -47,7 +48,14 @@ equalBtn.addEventListener('click', () => {
     displayValue.value = operate();
     totalSum = displayValue.value;
     totalSum = +totalSum;
-    console.log(totalSum)
+});
+
+clearBtn.addEventListener('click', () => {
+    displayValue.value = null;
+    previousOperand = 0;
+    currentOperand = 0;
+    currentOperator = '';
+    totalSum = null;
 });
 
 function operate(a, b, operator) {
@@ -79,13 +87,7 @@ function multiply(a, b) {
 };
 
 function divide(a, b) {
-    return a / b;
+    if (b == 0) {
+        return displayValue.value = "OOPS!";
+    } else return a / b;
 };
-
-clearBtn.addEventListener('click', () => {
-    displayValue.value = '';
-    previousOperand = 0;
-    currentOperand = 0;
-    currentOperator = 0;
-    finalSum = 0;
-});
