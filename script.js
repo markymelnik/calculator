@@ -23,26 +23,25 @@ numBtn.forEach(button => {
             displayValue.value += button.textContent;
             currentOperand += button.textContent;
             currentOperand = parseInt(currentOperand);
-            console.log(currentOperand);
 }})});
 
 signBtn.forEach(sign => {
     sign.addEventListener('click', () => {
         needSecondOperand = true;
         displayValue.value += sign.textContent;
+        currentOperator = sign.textContent;
         previousOperand = currentOperand;
         currentOperand = 0;
-        console.log(previousOperand)    
 })});
 
-clearBtn.addEventListener('click', () => {
-    displayValue.value = '';
-    previousOperand = 0;
-    currentOperand = 0;
-    currentOperator = 0;
+equalBtn.addEventListener('click', () => {
+    displayValue.value = operate();
 });
 
 function operate(a, b, operator) {
+    a = previousOperand;
+    b = currentOperand;
+    operator = currentOperator;
     switch(operator) {
         case "+": 
             return add(a, b);
@@ -70,3 +69,10 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
+
+clearBtn.addEventListener('click', () => {
+    displayValue.value = '';
+    previousOperand = 0;
+    currentOperand = 0;
+    currentOperator = 0;
+});
