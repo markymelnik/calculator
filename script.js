@@ -10,7 +10,7 @@ let previousOperand = 0;
 let currentOperand = 0;
 let currentOperator = '';
 let needSecondOperand = false;
-let totalSum = null;
+let numResult = null;
 
 numBtn.forEach(button => {
     button.addEventListener('click', () => {
@@ -22,8 +22,7 @@ numBtn.forEach(button => {
             displayValue.value += button.textContent;
             currentOperand += button.textContent;
             currentOperand = +currentOperand;
-            totalSum = operate();
-            console.log(totalSum);
+            numResult = operate();
             operate();
         }
     })
@@ -31,10 +30,10 @@ numBtn.forEach(button => {
 
 signBtn.forEach(sign => {
     sign.addEventListener('click', () => {
-        if (totalSum != null) {
+        if (numResult != null) {
             displayValue.value += sign.textContent;
             currentOperator = sign.textContent;
-            previousOperand = totalSum;
+            previousOperand = numResult;
             currentOperand = 0;
         } else {
             needSecondOperand = true;
@@ -48,8 +47,8 @@ signBtn.forEach(sign => {
 
 equalBtn.addEventListener('click', () => {
     displayValue.value = operate();
-    totalSum = displayValue.value;
-    totalSum = +totalSum;
+    numResult = displayValue.value;
+    numResult = +numResult;
 });
 
 clearBtn.addEventListener('click', () => {
@@ -57,7 +56,8 @@ clearBtn.addEventListener('click', () => {
     previousOperand = 0;
     currentOperand = 0;
     currentOperator = '';
-    totalSum = null;
+    needSecondOperand = false;
+    numResult = null;
 });
 
 function operate(a, b, operator) {
