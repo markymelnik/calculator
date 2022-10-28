@@ -5,7 +5,6 @@ const signBtn = document.querySelectorAll(".signBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const equalBtn = document.querySelector("#equalBtn");
 const displayValue = document.querySelector("#displayField");
-const numAndSignBtns = document.querySelectorAll(".numBtn", ".signBtn");
 
 let previousOperand = 0;
 let currentOperand = 0;
@@ -13,36 +12,39 @@ let currentOperator = '';
 let needSecondOperand = false;
 let totalSum = null;
 
-let displayArray = [];
-
 numBtn.forEach(button => {
     button.addEventListener('click', () => {
         if (needSecondOperand == false) {
             displayValue.value += button.textContent;
             currentOperand += button.textContent;
-            currentOperand = parseInt(currentOperand);
+            currentOperand = +currentOperand;
         } else {
             displayValue.value += button.textContent;
             currentOperand += button.textContent;
-            currentOperand = parseInt(currentOperand); 
+            currentOperand = +currentOperand;
+            totalSum = operate();
+            console.log(totalSum);
+            operate();
         }
-})});
+    })
+});
 
 signBtn.forEach(sign => {
     sign.addEventListener('click', () => {
-        if (totalSum == null) {
+        if (totalSum != null) {
+            displayValue.value += sign.textContent;
+            currentOperator = sign.textContent;
+            previousOperand = totalSum;
+            currentOperand = 0;
+        } else {
             needSecondOperand = true;
             displayValue.value += sign.textContent;
             currentOperator = sign.textContent;
             previousOperand = currentOperand;
             currentOperand = 0;
-        } else {
-            displayValue.value += sign.textContent;
-            currentOperator = sign.textContent;
-            previousOperand = totalSum;
-            currentOperand = 0;
         }
-})});
+    })
+});
 
 equalBtn.addEventListener('click', () => {
     displayValue.value = operate();
@@ -89,5 +91,6 @@ function multiply(a, b) {
 function divide(a, b) {
     if (b == 0) {
         return displayValue.value = "OOPS!";
-    } else return a / b;
+    } 
+    return a / b;
 };
