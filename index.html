@@ -4,31 +4,40 @@
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Calculator Project!</title>
+    <title>Calculator Application</title>
 </head>
 <body>
     <link rel="stylesheet" href="style.css">
-    <div id='calculator'>
-        <button type="button" id='clearBtn' value='clear'>Clear</button>
-        <input type='text' id='displayField' value='' disabled>
-    <div class='calcBtns'>
-        <button class='signBtn' value='+'>+</button>
-        <button class='signBtn' value='-'>-</button>
-        <button class='signBtn' value='*'>*</button>
-        <button class='signBtn' value='/'>/</button>
-        <button class='numBtn' value='1'>1</button>
-        <button class='numBtn' value='2'>2</button>
-        <button class='numBtn' value='3'>3</button>
-        <button class='numBtn' value='4'>4</button>
-        <button class='numBtn' value='5'>5</button>
-        <button class='numBtn' value='6'>6</button>
-        <button class='numBtn' value='7'>7</button>
-        <button class='numBtn' value='8'>8</button>
-        <button class='numBtn' value='9'>9</button>
-        <button class='numBtn' value='0'>0</button> 
-        <button id='equalBtn' value='='>=</button>
+    <div class="title"><h1>Calculator!</h1></div>
+    <div class="calculator">
+            <input type='text' class='displayField' value='' disabled>
+        <div class='calcBtns'>
+            
+            <button type="button" class='clearBtn span-2' value='C'>C</button>
+            <button type="button" class='signBtn' value='%'>%</button>
+            <button type="button" class='signBtn' value='/'>/</button>
+            
+            <button type="button" class='numBtn' value='7'>7</button>
+            <button type="button" class='numBtn' value='8'>8</button>
+            <button type="button" class='numBtn' value='9'>9</button>
+            <button type="button" class='signBtn' value='*'>*</button>
+            
+            <button type="button" class='numBtn' value='4'>4</button>
+            <button type="button" class='numBtn' value='5'>5</button>
+            <button type="button" class='numBtn' value='6'>6</button>
+            <button type="button" class='signBtn' value='-'>-</button>
+            
+            <button type="button" class='numBtn' value='1'>1</button>
+            <button type="button" class='numBtn' value='2'>2</button>
+            <button type="button" class='numBtn' value='3'>3</button>
+            <button type="button" class='signBtn' value='+'>+</button>
+            
+            <button type="button" class='numBtn span-2' value='0'>0</button> 
+            <button type="button" class='decimalBtn' value='.'>.</button>
+            <button type="button" class='equalBtn' value='='>=</button>
+        
+        </div>
     </div>
-</div>
     <script src='script.js'></script>
 </body>
 </html>
