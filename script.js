@@ -3,8 +3,9 @@
 const numBtn = document.querySelectorAll(".numBtn");
 const signBtn = document.querySelectorAll(".signBtn");
 const decimalBtn = document.querySelector(".decimalBtn");
-const clearBtn = document.querySelector(".clearBtn");
 const equalBtn = document.querySelector(".equalBtn");
+const clearBtn = document.querySelector(".clearBtn");
+const deleteBtn = document.querySelector(".deleteBtn");
 const displayValue = document.querySelector(".displayField");
 
 let previousOperand = 0;
@@ -59,8 +60,9 @@ equalBtn.addEventListener('click', () => {
         let roundedValue = numResult.toFixed(3);
         displayValue.value = roundedValue;
     } else {
-    displayValue.value = numResult;
-}});
+        displayValue.value = numResult;
+    }
+});
 
 clearBtn.addEventListener('click', () => {
     displayValue.value = null;
@@ -69,6 +71,12 @@ clearBtn.addEventListener('click', () => {
     currentOperator = '';
     needSecondOperand = false;
     numResult = null;
+});
+
+deleteBtn.addEventListener('click', () => {
+    displayValue.value = (displayValue.value).substring(0, ((displayValue.value).length - 1));
+    numResult = +displayValue.value;
+    currentOperand = Math.floor(currentOperand / 10);   
 });
 
 function operate(a, b, operator) {
